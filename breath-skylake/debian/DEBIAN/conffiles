@@ -65,8 +65,6 @@
 /lib/firmware/i915/skl_dmc_ver1_16.bin
 /lib/firmware/i915/skl_guc_49.0.1.bin
 /lib/firmware/i915/skl_dmc_ver1_23.bin
-/lib/systemd/system-sleep/atmel_mxt_ts
-/lib/systemd/system-sleep/wifi.sh
 /usr/share/alsa/ucm2/sklnau8825max/HiFi.conf
 /usr/share/alsa/ucm2/sklnau8825max/Hdmi2.conf
 /usr/share/alsa/ucm2/sklnau8825max/Hdmi1.conf
