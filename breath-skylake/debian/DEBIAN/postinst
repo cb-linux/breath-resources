@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Check if user has the newer UCM directory layout
+if [ -d "/usr/share/alsa/ucm2/conf.d" ]; then
+  if [ -d "/usr/share/alsa/ucm2/conf.d/sklnau8825*" ]; then
+    sudo rm -rv /usr/share/alsa/ucm2/conf.d/sklnau8825*
+  fi
+  sudo mv -v /usr/share/alsa/ucm2/sklnau8825* /usr/share/alsa/ucm2/conf.d
+fi
+
+# Copy pipewire alsa configuration
+sudo cp /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
+
+# rebuild initramfs due to /etc/modprobe.d/* changes in re: sdhci
+update-initramfs -u -k all
+
+# If sound card is found by kernel, reset system ALSA config.
+# This will only work if an appropriate kernel version is in place.
+CARD0_ID_FILE="/proc/asound/card0/id"
+
+if [ -r "$CARD0_ID_FILE" ]; then
+  HOME=/tmp alsaucm -c $(cat $CARD0_ID_FILE) reset
+fi
+
+exit 0

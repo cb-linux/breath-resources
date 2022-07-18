@@ -1,0 +1,44 @@
+name: 📦 Package Delivery System
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip-ci')"
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 2
+      - name: Generate Diff/Changelog
+        run: |
+          echo 'DIFF<<EOF' >> $GITHUB_ENV
+          git diff HEAD^..HEAD >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+      - name: Generate release tag
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::PackageDeliverySystem$(date +"%Y.%m.%d_%H-%M")"
+      - name: Create output folder
+        run: mkdir -v output
+      - name: Building breath-base
+        run: dpkg-deb -Z gzip -b breath-base/debian output/breath-base.deb
+      - name: Building breath-skylake
+        run: dpkg-deb -Z gzip -b breath-skylake/debian output/breath-skylake.deb
+      - name: Release Breath-Skylake to GitHub
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          name: 📦 Package Rebuild - ${{ github.event.head_commit.message }}
+          body: |
+            🛈 General Changes since the last release
+            ```
+            ${{ env.DIFF }}
+            ```
+
+            🚚 Package Delivery System - Triggered by ${{ github.sha }} at ${{ github.event.repository.updated_at }}
+          files: |
+            output/*
