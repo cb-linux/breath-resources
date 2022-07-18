@@ -1,2 +1,5 @@
-/usr/share/breath-base/xkb/pc
-/usr/share/breath-base/xkb/evdev
+/debian/usr/share/breath-base/xkb/evdev
+/debian/usr/share/breath-base/xkb/pc
+/debian/usr/bin/firmware-util
+/debian/etc/sysctl.d/20-breath.conf
+/debian/etc/initramfs-tools/conf.d/resume
