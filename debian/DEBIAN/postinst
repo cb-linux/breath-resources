@@ -14,11 +14,3 @@ sudo cp /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /e
 # rebuild initramfs due to /etc/modprobe.d/* changes in re: sdhci
 update-initramfs -u -k all
 
-# If sound card is found by kernel, reset system ALSA config.
-# This will only work if an appropriate kernel version is in place.
-CARD0_ID_FILE="/proc/asound/card0/id"
-
-if [ -r "$CARD0_ID_FILE" ]; then
-  HOME=/tmp alsaucm -c $(cat $CARD0_ID_FILE) reset
-fi
-
