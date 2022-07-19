@@ -1,5 +1,0 @@
-/usr/share/breath-base/xkb/evdev
-/usr/share/breath-base/xkb/pc
-/usr/bin/firmware-util
-/etc/sysctl.d/20-breath.conf
-/etc/initramfs-tools/conf.d/resume
