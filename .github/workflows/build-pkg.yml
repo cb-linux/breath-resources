@@ -25,7 +25,7 @@ jobs:
       - name: Create output folder
         run: mkdir -v output
       - name: Building breath-base
-        run: dpkg-deb -Z gzip -b breath-base/debian output/breath-base.deb
+        run: zip breath-base output/breath-base.zip
       - name: Building breath-skylake
         run: dpkg-deb -Z gzip -b breath-skylake/debian output/breath-skylake.deb
       - name: Release Breath-Skylake to GitHub
