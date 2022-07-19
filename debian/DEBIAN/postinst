@@ -22,4 +22,3 @@ if [ -r "$CARD0_ID_FILE" ]; then
   HOME=/tmp alsaucm -c $(cat $CARD0_ID_FILE) reset
 fi
 
-exit 0
