@@ -26,9 +26,11 @@ jobs:
         run: mkdir -v output
       - name: Building breath-base
         run: cd breath-base; zip -r ../output/breath-base.zip *; cd ../
-      - name: Building breath-base
-        run: cd breath-skl-kbl; zip -r ../output/breath-skl-kbl.zip *; cd ../
-      - name: Release Breath-Skylake to GitHub
+      - name: Building breath-skylake
+        run: cd breath-skylake; zip -r ../output/breath-skylake.zip *; cd ../
+      - name: Building breath-kabylake
+        run: cd breath-kabylake; zip -r ../output/breath-kabylake.zip *; cd ../
+      - name: Release Breath packages to GitHub
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.tag.outputs.release_tag }}
