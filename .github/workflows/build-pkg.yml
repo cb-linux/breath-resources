@@ -25,11 +25,13 @@ jobs:
       - name: Create output folder
         run: mkdir -v output
       - name: Building breath-base
-        run: cd breath-base; zip -r ../output/breath-base.zip *; cd ../
-      - name: Building breath-skylake
-        run: cd breath-skylake; zip -r ../output/breath-skylake.zip *; cd ../
-      - name: Building breath-kabylake
-        run: cd breath-kabylake; zip -r ../output/breath-kabylake.zip *; cd ../
+      - name: Building all packages
+        run: |
+          for folder in "breath*""
+          do
+            folderName=$(basename $folder)
+            cd folder && zip -r $folderName.zip $folderName && cd ../
+          done
       - name: Release Breath packages to GitHub
         uses: softprops/action-gh-release@v1
         with:
