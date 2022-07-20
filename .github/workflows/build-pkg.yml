@@ -26,7 +26,7 @@ jobs:
         run: mkdir -v output
       - name: Building all packages
         run: |
-          for folder in "breath*""
+          for folder in "breath*"
           do
             folderName=$(basename $folder)
             cd folder && zip -r $folderName.zip $folderName && cd ../
