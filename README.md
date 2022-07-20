@@ -18,5 +18,3 @@ Distro-specific packages to port the userspace functionality of Breath to other 
 - `lib/firmware/`: Firmware files - some unnecessary, such as `iwlwifi` files
 - `usr/share/alsa/ucm2/kblda7219max/`: UCM Files modified to use standard UCM commands. Differences are minimal but allow for jack switching in Pipewire and Wireplumber.
 - `usr/share/wireplumber/main.lua.d/50-breath-config.lua`: Make Wireplumber use automatically Alsa Card Profile and make audio format S16_LE to prevent bad select by Pipewire.
-
-TODO: Document breath-base
