@@ -1,10 +1,3 @@
-
---alsa_monitor.properties = {
---  ["alsa.reserve"] = true,
---  ["alsa.midi"] = true,
---  ["alsa.midi.monitoring"] = true,
---}
-
 alsa_monitor.rules = {
   {
     matches = {
