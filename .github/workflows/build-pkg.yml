@@ -26,10 +26,10 @@ jobs:
         run: mkdir -v output
       - name: Building all packages
         run: |
-          for folder in "breath*"
+          for folder in breath*
           do
             folderName=$(basename $folder)
-            cd folder && zip -r $folderName.zip $folderName && cd ../
+            cd $folderName; zip -r ../output/$folderName.zip *; cd ..
           done
       - name: Release Breath packages to GitHub
         uses: softprops/action-gh-release@v1
