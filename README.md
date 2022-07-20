@@ -16,5 +16,5 @@ Distro-specific packages to port the userspace functionality of Breath to other 
 ## breath-skylake
 - `etc/modprobe.d/snd-hda-intel.conf`: `snd_hda_intel` conflicts with `snd_soc_skl`
 - `lib/firmware/`: Firmware files - some unnecessary, such as `iwlwifi` files
-- `usr/share/alsa/ucm2/kblda7219max/`: UCM Files modified to use standard UCM commands. Differences are minimal but allow for jack switching in Pipewire and Wireplumber.
+- `usr/share/alsa/ucm2/sklnau8825[max|adi]/`: UCM Files modified to use standard UCM commands. Differences are minimal but allow for jack switching in Pipewire and Wireplumber.
 - `usr/share/wireplumber/main.lua.d/50-breath-config.lua`: Make Wireplumber use automatically Alsa Card Profile and make audio format S16_LE to prevent bad select by Pipewire.
