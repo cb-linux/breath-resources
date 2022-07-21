@@ -24,13 +24,21 @@ jobs:
           echo "::set-output name=release_tag::PackageDeliverySystem$(date +"%Y.%m.%d_%H-%M")"
       - name: Create output folder
         run: mkdir -v output
+      - name: Create breath-kernel package
+        run: mkdir breath-kernel; mkdir breath-kernel/boot; mkdir breath-kernel/lib; mkdir breath-kernel/lib/modules
+      - name: Create breath-kernel-alt package
+        run: mkdir breath-kernel-alt; mkdir breath-kernel-alt/boot; mkdir breath-kernel-alt/lib; mkdir breath-kernel-alt/lib/modules
+      - name: Building the standard (Release 101) Kernel
+        run:  git clone --recurse-submodules https://github.com/cb-linux/breath && cd breath; cd kernel; bash build.sh chromeos-5.10;
+      - name: Building the legacy SKL/KBL Kernel
+        run: cd kernel; bash build.sh alt-chromeos-5.10;
       - name: Building all packages
         run: |
           for folder in breath*
           do
             folderName=$(basename $folder)
             cd $folderName; zip -r ../output/$folderName.zip *; cd ..
-          done
+          
       - name: Release Breath packages to GitHub
         uses: softprops/action-gh-release@v1
         with:
