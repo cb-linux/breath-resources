@@ -38,7 +38,7 @@ jobs:
           do
             folderName=$(basename $folder)
             cd $folderName; zip -r ../output/$folderName.zip *; cd ..
-          
+          done
       - name: Release Breath packages to GitHub
         uses: softprops/action-gh-release@v1
         with:
