@@ -41,22 +41,22 @@ jobs:
       - name: Clone Breath repository
         run: git clone --recurse-submodules https://github.com/cb-linux/breath && cd breath;
       - name: Building the standard (Release 101) Kernel
-        run: ls -l; cd kernel; bash build.sh chromeos-5.10;
+        run: cd breath/kernel; bash build.sh chromeos-5.10;
       - name: Building the legacy SKL/KBL Kernel
-        run: cd kernel; bash build.sh alt-chromeos-5.10;
+        run: cd breath/kernel; bash build.sh alt-chromeos-5.10;
       - name: Copying kernel files into concerned package
-        run: |
-          cp -v modules/* ../breath-kernel/lib/modules/breath/
-          cp -v vmlinuz-breath ../breath-kernel/boot/
-          cp -v System.map-breath ../breath-kernel/boot/
-          cp -v config-breath ../breath-kernel/boot/
-          cp -v modules.alt/* ../breath-kernel-alt/lib/modules/breath/
-          cp -v vmlinuz-breath-alt ../breath-kernel-alt/boot/
-          cp -v System.map-breath-alt ../breath-kernel-alt/boot/
-          cp -v config-breath-alt ../breath-kernel-alt/boot/
+        run: pwd && ls -l 
+          #cp -v modules/* ../breath-kernel/lib/modules/breath/
+          #cp -v vmlinuz-breath ../breath-kernel/boot/
+          #cp -v System.map-breath ../breath-kernel/boot/
+          #cp -v config-breath ../breath-kernel/boot/
+          #cp -v modules.alt/* ../breath-kernel-alt/lib/modules/breath/
+          #cp -v vmlinuz-breath-alt ../breath-kernel-alt/boot/
+          #cp -v System.map-breath-alt ../breath-kernel-alt/boot/
+          #cp -v config-breath-alt ../breath-kernel-alt/boot/
       - name: Building all packages
         run: |
-          for folder in breath*
+          for folder in breath-*
           do
             folderName=$(basename $folder)
             cd $folderName; zip -r ../output/$folderName.zip *; cd ..
