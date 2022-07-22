@@ -41,7 +41,7 @@ jobs:
       - name: Clone Breath repository
         run: git clone --recurse-submodules https://github.com/cb-linux/breath && cd breath;
       - name: Building the standard (Release 101) Kernel
-        run: cd kernel; bash build.sh chromeos-5.10;
+        run: ls -l; cd kernel; bash build.sh chromeos-5.10;
       - name: Building the legacy SKL/KBL Kernel
         run: cd kernel; bash build.sh alt-chromeos-5.10;
       - name: Copying kernel files into concerned package
